@@ -27,6 +27,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+object Cache {
+    val hosts = SparseArray<NavHostFragment>()
+}
+
 /**
  * Manages the various graphs needed for a [BottomNavigationView].
  *
@@ -57,6 +61,8 @@ fun BottomNavigationView.setupWithNavController(
             navGraphId,
             containerId
         )
+
+        Cache.hosts[navGraphId] = navHostFragment
 
         // Obtain its id
         val graphId = navHostFragment.navController.graph.id

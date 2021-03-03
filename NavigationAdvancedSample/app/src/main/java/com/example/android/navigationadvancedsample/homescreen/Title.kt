@@ -22,7 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.example.android.navigationadvancedsample.MainActivity
 import com.example.android.navigationadvancedsample.R
 
 /**
@@ -35,7 +35,8 @@ class Title : Fragment() {
         val view = inflater.inflate(R.layout.fragment_title, container, false)
 
         view.findViewById<Button>(R.id.about_btn).setOnClickListener {
-            findNavController().navigate(R.id.action_title_to_about)
+//            findNavController().navigate(R.id.action_title_to_about)
+            (activity as? MainActivity)?.demoDeeplink()
         }
         return view
     }

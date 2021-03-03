@@ -16,11 +16,13 @@
 
 package com.example.android.navigationadvancedsample
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -28,6 +30,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * An activity that inflates a layout that has a [BottomNavigationView].
  */
 class MainActivity : AppCompatActivity() {
+
+    fun demoDeeplink() {
+        // TODO: solve deep link navigation to another tab whose state is saved
+        //      Steps:
+        //      1. click List tab
+        //      2. click Home tab
+        //      3. click deep link button
+        //      ...navigate() call ignored
+        val controller = Cache.hosts[R.navigation.list].navController
+        findViewById<BottomNavigationView>(R.id.bottom_nav).selectedItemId = controller.graph.id
+        controller.navigate(Uri.parse("https://www.example.com/user/Person 2"))
+    }
+
 
     private var currentNavController: LiveData<NavController>? = null
 
